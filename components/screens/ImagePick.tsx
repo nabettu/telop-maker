@@ -60,7 +60,7 @@ export const ImagePickScreen = ({ navigation, route }) => {
   const openImagePicker = async ({ type = "library" }) => {
     const imageOption: ImagePicker.ImagePickerOptions = {
       allowsEditing: Boolean(Constants.platform.android),
-      aspect: [3, 2],
+      aspect: [1, 1],
     };
 
     const photo: ImagePicker.ImagePickerResult =

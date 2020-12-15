@@ -40,11 +40,6 @@ function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen
-        name="Share"
-        component={ShareScreen}
-        options={{ title: "投稿画面" }}
-      />
-      <Stack.Screen
         name="About"
         component={AboutScreen}
         options={{ title: "本アプリについて" }}
@@ -58,6 +53,11 @@ function RootNavigator() {
         name="Edit"
         component={EditScreen}
         options={{ title: "編集画面" }}
+      />
+      <Stack.Screen
+        name="Share"
+        component={ShareScreen}
+        options={{ title: "投稿画面" }}
       />
     </Stack.Navigator>
   );

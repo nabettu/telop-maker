@@ -48,6 +48,7 @@ export const EditScreen = ({ route, navigation }) => {
 
   const uploadImage = async () => {
     console.log(captureImageUri);
+    //TODO: ネイティブはbase64に直す
     const id = await postImage(captureImageUri);
     navigation.navigate("Share", { id });
   };
@@ -77,22 +78,29 @@ export const EditScreen = ({ route, navigation }) => {
           <Text style={styles.btnText}>画像を生成する</Text>
         </TouchableOpacity>
         {captureImageUri && (
-          <>
+          <View>
             <Image
               source={{ uri: captureImageUri }}
               style={styles.captureImage}
             />
             {Constants.platform.web ? (
-              <Text>画像を長押しして保存してください</Text>
+              <>
+                <Text>画像を長押しして保存してください</Text>
+                <TouchableOpacity style={styles.btn} onPress={uploadImage}>
+                  <Text style={styles.btnText}>画像シェア用URLを発行</Text>
+                </TouchableOpacity>
+              </>
             ) : (
-              <TouchableOpacity style={styles.btn} onPress={saveImage}>
-                <Text style={styles.btnText}>画像を保存する</Text>
-              </TouchableOpacity>
+              <View style={{ flexDirection: "row" }}>
+                <TouchableOpacity style={styles.btn} onPress={saveImage}>
+                  <Text style={styles.btnText}>画像を保存する</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btn} onPress={uploadImage}>
+                  <Text style={styles.btnText}>画像シェア用URLを発行</Text>
+                </TouchableOpacity>
+              </View>
             )}
-            <TouchableOpacity style={styles.btn} onPress={uploadImage}>
-              <Text style={styles.btnText}>画像シェア用URLを発行</Text>
-            </TouchableOpacity>
-          </>
+          </View>
         )}
       </ScrollView>
     </KeyboardAvoidingView>
@@ -127,6 +135,7 @@ const styles = StyleSheet.create({
   captureImage: {
     marginTop: 32,
     marginBottom: 16,
+    alignSelf: "center",
     width: 300,
     height: 200,
   },
@@ -159,6 +168,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     marginTop: 32,
+    marginHorizontal: 4,
     backgroundColor: "#099",
     borderRadius: 4,
     paddingVertical: 8,

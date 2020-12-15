@@ -10,9 +10,9 @@ import {
 import Constants from "expo-constants";
 import * as WebBrowser from "expo-web-browser";
 
-export const ShareScreen = ({ route }) => {
-  // const { id } = route.params;
-  const id = "V4PEvuJ";
+export const ShareScreen = ({ route, navigation }) => {
+  const { id } = route.params;
+  // const id = "V4PEvuJ";
 
   const share = async () => {
     const hashtags = "テロップメーカー";
@@ -27,16 +27,25 @@ export const ShareScreen = ({ route }) => {
       );
     }
   };
+  const back = () => {
+    navigation.navigate("About");
+  };
   return (
     <View style={styles.container}>
       <Image
         source={{ uri: `https://i.imgur.com/${id}.png` }}
         style={styles.img}
       />
-      <TouchableOpacity style={styles.btn} onPress={share}>
+      <TouchableOpacity
+        style={[styles.btn, { backgroundColor: "#55acee" }]}
+        onPress={share}
+      >
         <Text style={styles.btnText}>Twitterでシェア</Text>
       </TouchableOpacity>
       <View style={styles.space} />
+      <TouchableOpacity style={styles.btn} onPress={back}>
+        <Text style={styles.btnText}>最初から作る</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -59,7 +68,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     marginTop: 32,
-    backgroundColor: "#55acee",
+    backgroundColor: "#099",
     borderRadius: 4,
     paddingVertical: 8,
     paddingHorizontal: 16,
