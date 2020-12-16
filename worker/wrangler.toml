@@ -1,0 +1,6 @@
+name = "telop-maker-share"
+type = "javascript"
+account_id = "a155d10d55ef4c871403ffd738331689"
+workers_dev = true
+route = ""
+zone_id = ""
