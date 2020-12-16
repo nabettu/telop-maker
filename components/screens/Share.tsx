@@ -16,7 +16,7 @@ export const ShareScreen = ({ route, navigation }) => {
 
   const share = async () => {
     const hashtags = "テロップメーカー";
-    const shareUrl = "https://telopmaker.nabettu.com/Share?id=" + id;
+    const shareUrl = "https://telop-maker.tokyo/share?id=" + id;
 
     if (!Constants.platform.web) {
       const url = `twitter://post?message=${shareUrl}&hashtags=${hashtags}`;
