@@ -6,11 +6,22 @@ addEventListener('fetch', event => {
  * @param {Request} request
  */
 async function handleRequest(request) {
-  console.log('start')
   const response = await fetch('https://telop-maker.tokyo/')
-  const results = await response.text()
-  console.log(results)
-
+  let results = await response.text()
+  const url = request.url
+  const id = url
+    .split('?')[1]
+    .split('&')[0]
+    .split('=')[1]
+  const imageUrl = `https://i.imgur.com/${id}.png`
+  results = results.replace(
+    'content="https://telop-maker.tokyo/"',
+    `content="${url}"`,
+  )
+  results = results.replace(
+    /\"https:\/\/telop-maker\.tokyo\/sample\.png\"/g,
+    imageUrl,
+  )
   return new Response(results, {
     headers: { 'Content-Type': 'text/html' },
     status: 200,
